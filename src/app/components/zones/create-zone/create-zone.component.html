@@ -1,0 +1,51 @@
+<p class="mat-body-1">
+  Left Click to draw <br />
+  Right Click to stop
+</p>
+
+<div class="container">
+  <svg
+    (mousedown)="setPoint($event)"
+    (contextmenu)="finish($event)"
+    (mousemove)="previewEdge($event)"
+  >
+    <polygon [attr.points]="points" />
+    <line
+      *ngIf="tempPoint"
+      [attr.x1]="lastPoint.x"
+      [attr.y1]="lastPoint.y"
+      [attr.x2]="tempPoint.x"
+      [attr.y2]="tempPoint.y"
+      stroke="black"
+    />
+    <ng-container *ngFor="let point of points">
+      <circle [attr.cx]="point[0]" [attr.cy]="point[1]" r="1" fill="red" />
+    </ng-container>
+  </svg>
+</div>
+<button mat-raised-button color="warn" (click)="reset()">Clear</button>
+
+<div class="form-header">
+  <mat-error *ngIf="points.length !== 4">Must have 4 points</mat-error>
+</div>
+
+<form [formGroup]="form" *ngIf="form">
+  <mat-form-field>
+    <mat-label for="name">Name:</mat-label>
+    <input matInput id="name" type="text" formControlName="name" />
+    <mat-error
+      *ngIf="form.get('name')?.touched && form.get('name')?.errors?.['required']"
+    >
+      Name is required.
+    </mat-error>
+  </mat-form-field>
+
+  <button
+    [disabled]="points.length !== 4 || !form.get('name')?.valid"
+    mat-raised-button
+    color="primary"
+    (click)="createZone()"
+  >
+    Create
+  </button>
+</form>

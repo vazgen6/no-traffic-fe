@@ -1,0 +1,27 @@
+:host {
+  display: block;
+  margin: 0 10px;
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .create-view-wrapper {
+    display: flex;
+    app-create-zone {
+      flex: 1;
+    }
+    app-zone {
+      flex: 2;
+    }
+    .no-zone-selected {
+      flex: 2;
+      justify-self: center;
+      align-self: center;
+      text-align: center;
+    }
+  }
+  .add-zone {
+    align-self: flex-end;
+  }
+}

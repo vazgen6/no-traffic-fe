@@ -1,0 +1,13 @@
+<svg
+  [attr.viewBox]="zone.points | formatSvgPoints"
+  preserveAspectRatio="xMidYMid meet"
+>
+  <polygon
+    [attr.points]="zone.points | formatPolygonPoints"
+  />
+  <ng-container *ngFor="let point of zone.points">
+    <circle [attr.cx]="point[0]" [attr.cy]="point[1]" r="1" fill="red" />
+  </ng-container>
+</svg>
+<span>{{ zone.name }}</span>
+
