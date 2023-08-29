@@ -51,7 +51,6 @@ import { FormatPolygonPointsPipe } from './pipes/format-polygon-points.pipe';
     MatIconModule,
     MatDialogModule,
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
